@@ -4,16 +4,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='/static/css/main.css' />
   <title>Cat Cafe</title>
 </head>
-<body>
-  <h1>Currently in the cafe, we have:</h1>
-  <h3> {{ name }} </h3>
-
-  {% if name == 'chonk' %}
-    <img src='https://external-preview.redd.it/1JXefyR7WzgHuQiKN6DdPr0Cw_KhxSyTurpEXXFMNK8.jpg?auto=webp&s=b320e14b4100be7e4bfa2f387a34c0d3a0a8ef32' alt='chonk' />
-  {% else %}
-    <img src='http://placekitten.com/200/300' alt={{name}} />
-  {% endif %}
+<body class="cat-box">
+  <div>
+    <h1>Currently in the cafe, we have:</h1>
+    <h3> {{ name }} </h3>
+  
+    {% if name == 'chonk' %}
+      <img src='https://external-preview.redd.it/1JXefyR7WzgHuQiKN6DdPr0Cw_KhxSyTurpEXXFMNK8.jpg?auto=webp&s=b320e14b4100be7e4bfa2f387a34c0d3a0a8ef32' alt='chonk' />
+    {% else %}
+      <img src='http://placekitten.com/200/300' alt={{name}} />
+    {% endif %}
+  </div>
 </body>
 </html>

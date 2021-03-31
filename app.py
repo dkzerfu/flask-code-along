@@ -44,8 +44,12 @@ def cats_api():
     return jsonify({ 'cats': fake_database })
   if request.method == 'POST':
     # get the request body
-    cat = request.form['name']
+    # this is for html form
+    # cat = request.form['name']
+    # fake_database.append(cat)
+    # this is for raw json request bodies
+    request_body = request.get_json()
     # add it to our fake database
-    fake_database.append(cat)
+    fake_database.append(request_body['name'])
     # redirect to /api/cats
     return redirect('/api/cats')
