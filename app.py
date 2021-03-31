@@ -1,5 +1,5 @@
 # import flask
-from flask import Flask
+from flask import Flask, render_template, request, jsonify, redirect
 # import dotenv
 from dotenv import load_dotenv
 # import the operationg system
@@ -18,10 +18,34 @@ def hello_flask():
 # GET /cats -- landing page for the cat cafe
 @app.route('/cats')
 def cats():
-  return 'cat cafe 🐈'
+  return render_template('cats.html')
 
 
 # GET /cats/onecat
 @app.route('/cats/<name>')
 def cat_name(name):
-  return f'in the cafe, we have {name} 🐱'
+  return render_template('cats_name.html', name=name)
+
+fake_database = [
+  'fritz the cat',
+  'snowball II',
+  'cheshire cat',
+  'sylvester?'
+]
+
+# GET /api/cats -- show cats from our fake db
+# POST /api/cats -- create a new cat in our fake db
+@app.route('/api/cats', methods=['GET', 'POST'])
+def cats_api():
+  # get the global var
+  global fake_database
+  # use an if check to handle http methods
+  if request.method == 'GET':
+    return jsonify({ 'cats': fake_database })
+  if request.method == 'POST':
+    # get the request body
+    cat = request.form['name']
+    # add it to our fake database
+    fake_database.append(cat)
+    # redirect to /api/cats
+    return redirect('/api/cats')
